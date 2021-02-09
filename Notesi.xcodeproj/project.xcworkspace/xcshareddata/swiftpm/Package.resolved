@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftDown",
+        "repositoryURL": "https://github.com/qeude/SwiftDown",
+        "state": {
+          "branch": null,
+          "revision": "4a9498c8d1b9cbb55970be8fa79579a1b1391184",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

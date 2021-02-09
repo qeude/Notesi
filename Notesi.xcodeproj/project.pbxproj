@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		22528DAE25D31865005272C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528D8325D31860005272C9 /* ContentView.swift */; };
 		22528DAF25D31865005272C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22528D8425D31865005272C9 /* Assets.xcassets */; };
 		22528DB025D31865005272C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22528D8425D31865005272C9 /* Assets.xcassets */; };
+		22528DC525D31918005272C9 /* SwiftDown in Frameworks */ = {isa = PBXBuildFile; productRef = 22528DC425D31918005272C9 /* SwiftDown */; };
+		22528DCC25D3194F005272C9 /* SwiftDown in Frameworks */ = {isa = PBXBuildFile; productRef = 22528DCB25D3194F005272C9 /* SwiftDown */; };
+		22528DD225D31CBD005272C9 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DD125D31CBD005272C9 /* EditorView.swift */; };
+		22528DD325D31CBD005272C9 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DD125D31CBD005272C9 /* EditorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,7 @@
 		22528DA425D31865005272C9 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22528DA825D31865005272C9 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		22528DAA25D31865005272C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22528DD125D31CBD005272C9 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22528DCC25D3194F005272C9 /* SwiftDown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22528DC525D31918005272C9 /* SwiftDown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +99,7 @@
 				22528D9C25D31865005272C9 /* Tests iOS */,
 				22528DA725D31865005272C9 /* Tests macOS */,
 				22528D8A25D31865005272C9 /* Products */,
+				22528DCA25D3194F005272C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +109,7 @@
 				22528D8225D31860005272C9 /* NotesiApp.swift */,
 				22528D8325D31860005272C9 /* ContentView.swift */,
 				22528D8425D31865005272C9 /* Assets.xcassets */,
+				22528DD125D31CBD005272C9 /* EditorView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -151,6 +160,13 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		22528DCA25D3194F005272C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,6 +183,9 @@
 			dependencies = (
 			);
 			name = "Notesi (iOS)";
+			packageProductDependencies = (
+				22528DCB25D3194F005272C9 /* SwiftDown */,
+			);
 			productName = "Notesi (iOS)";
 			productReference = 22528D8925D31865005272C9 /* Notesi.app */;
 			productType = "com.apple.product-type.application";
@@ -184,6 +203,9 @@
 			dependencies = (
 			);
 			name = "Notesi (macOS)";
+			packageProductDependencies = (
+				22528DC425D31918005272C9 /* SwiftDown */,
+			);
 			productName = "Notesi (macOS)";
 			productReference = 22528D9125D31865005272C9 /* Notesi.app */;
 			productType = "com.apple.product-type.application";
@@ -258,6 +280,9 @@
 				Base,
 			);
 			mainGroup = 22528D7C25D31860005272C9;
+			packageReferences = (
+				22528DC325D31918005272C9 /* XCRemoteSwiftPackageReference "SwiftDown" */,
+			);
 			productRefGroup = 22528D8A25D31865005272C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -308,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22528DD225D31CBD005272C9 /* EditorView.swift in Sources */,
 				22528DAD25D31865005272C9 /* ContentView.swift in Sources */,
 				22528DAB25D31865005272C9 /* NotesiApp.swift in Sources */,
 			);
@@ -317,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22528DD325D31CBD005272C9 /* EditorView.swift in Sources */,
 				22528DAE25D31865005272C9 /* ContentView.swift in Sources */,
 				22528DAC25D31865005272C9 /* NotesiApp.swift in Sources */,
 			);
@@ -696,6 +723,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22528DC325D31918005272C9 /* XCRemoteSwiftPackageReference "SwiftDown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/qeude/SwiftDown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22528DC425D31918005272C9 /* SwiftDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22528DC325D31918005272C9 /* XCRemoteSwiftPackageReference "SwiftDown" */;
+			productName = SwiftDown;
+		};
+		22528DCB25D3194F005272C9 /* SwiftDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22528DC325D31918005272C9 /* XCRemoteSwiftPackageReference "SwiftDown" */;
+			productName = SwiftDown;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 22528D7D25D31860005272C9 /* Project object */;
 }

@@ -19,6 +19,8 @@
 		22528DCC25D3194F005272C9 /* SwiftDown in Frameworks */ = {isa = PBXBuildFile; productRef = 22528DCB25D3194F005272C9 /* SwiftDown */; };
 		22528DD225D31CBD005272C9 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DD125D31CBD005272C9 /* EditorView.swift */; };
 		22528DD325D31CBD005272C9 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DD125D31CBD005272C9 /* EditorView.swift */; };
+		22528DDD25D47FED005272C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DDC25D47FED005272C9 /* AppState.swift */; };
+		22528DDE25D47FED005272C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DDC25D47FED005272C9 /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 		22528DA825D31865005272C9 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		22528DAA25D31865005272C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22528DD125D31CBD005272C9 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		22528DDC25D47FED005272C9 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,7 @@
 			children = (
 				22528D8225D31860005272C9 /* NotesiApp.swift */,
 				22528D8325D31860005272C9 /* ContentView.swift */,
+				22528DDC25D47FED005272C9 /* AppState.swift */,
 				22528D8425D31865005272C9 /* Assets.xcassets */,
 				22528DD125D31CBD005272C9 /* EditorView.swift */,
 			);
@@ -336,6 +340,7 @@
 				22528DD225D31CBD005272C9 /* EditorView.swift in Sources */,
 				22528DAD25D31865005272C9 /* ContentView.swift in Sources */,
 				22528DAB25D31865005272C9 /* NotesiApp.swift in Sources */,
+				22528DDD25D47FED005272C9 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +351,7 @@
 				22528DD325D31CBD005272C9 /* EditorView.swift in Sources */,
 				22528DAE25D31865005272C9 /* ContentView.swift in Sources */,
 				22528DAC25D31865005272C9 /* NotesiApp.swift in Sources */,
+				22528DDE25D47FED005272C9 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

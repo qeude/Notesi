@@ -7,19 +7,13 @@
 
 import SwiftUI
 
-struct File: Identifiable {
-    let name: String
-    let path: String
-    let fullPath: String
-    var id: String { name }
-}
-
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
         NavigationView {
-            Group {
+            VStack {
+                SearchBar(searchText: $appState.searchText)
                 List {
                     ForEach(appState.files) { file in
                         NavigationLink(
@@ -38,7 +32,9 @@ struct ContentView: View {
             .onAppear {
                 appState.compute()
             }
-            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("didSelectedDirChange"))) { _ in
+            .onReceive(
+                NotificationCenter.default.publisher(for: Notification.Name("didSelectedDirChange"))
+            ) { _ in
                 appState.compute()
             }
         }

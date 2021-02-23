@@ -29,20 +29,40 @@ struct ContentView: View {
                 }
                 .listStyle(SidebarListStyle())
             }
-            .onAppear {
-                appState.compute()
+            .toolbar {
+                ToolbarItem(placement: .status) {
+                    Button(action: {
+                        toggleSidebar()
+                    }) {
+                        Image(systemName: "sidebar.left")
+                    }
+                }
+                ToolbarItem(placement: .status) {
+                    Spacer()
+                }
+                ToolbarItem(placement: .status) {
+                    Button(action: {
+                        appState.addFile()
+                    }) {
+                        Image(systemName: "plus.app")
+                    }
+                }
             }
-            .onReceive(
-                NotificationCenter.default.publisher(for: Notification.Name("didSelectedDirChange"))
-            ) { _ in
+            .onAppear {
                 appState.compute()
             }
         }
     }
 }
 
+func toggleSidebar() {
+    #if os(macOS)
+    NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+    #endif
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(AppState())
     }
 }

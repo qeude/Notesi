@@ -17,7 +17,7 @@ struct SearchBar: View {
             HStack {
                 HStack {
                     Image(systemName: "magnifyingglass")
-                    TextField("", text: $searchText) { editing in
+                    TextField("Search", text: $searchText) { editing in
                         isFocused = editing
                     }
                     .padding(6)

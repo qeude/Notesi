@@ -39,6 +39,8 @@
 		22528DD325D31CBD005272C9 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DD125D31CBD005272C9 /* EditorView.swift */; };
 		22528DDD25D47FED005272C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DDC25D47FED005272C9 /* AppState.swift */; };
 		22528DDE25D47FED005272C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22528DDC25D47FED005272C9 /* AppState.swift */; };
+		22876DD725E5911E004D13CD /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22876DD625E5911E004D13CD /* Binding+Extensions.swift */; };
+		22876DD825E5911E004D13CD /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22876DD625E5911E004D13CD /* Binding+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,7 @@
 		22528DAA25D31865005272C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22528DD125D31CBD005272C9 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		22528DDC25D47FED005272C9 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		22876DD625E5911E004D13CD /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,7 @@
 				22528DD125D31CBD005272C9 /* EditorView.swift */,
 				2231ED6425DC4E3300F63566 /* File.swift */,
 				2231ED7D25DC61EB00F63566 /* NSTextField+Extensions.swift */,
+				22876DD625E5911E004D13CD /* Binding+Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -391,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2231ED6525DC4E3300F63566 /* File.swift in Sources */,
+				22876DD725E5911E004D13CD /* Binding+Extensions.swift in Sources */,
 				22528DD225D31CBD005272C9 /* EditorView.swift in Sources */,
 				22528DAD25D31865005272C9 /* ContentView.swift in Sources */,
 				22528DAB25D31865005272C9 /* NotesiApp.swift in Sources */,
@@ -405,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2231ED6625DC4E3300F63566 /* File.swift in Sources */,
+				22876DD825E5911E004D13CD /* Binding+Extensions.swift in Sources */,
 				22528DD325D31CBD005272C9 /* EditorView.swift in Sources */,
 				22528DAE25D31865005272C9 /* ContentView.swift in Sources */,
 				22528DAC25D31865005272C9 /* NotesiApp.swift in Sources */,

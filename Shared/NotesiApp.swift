@@ -17,6 +17,8 @@ struct NotesiApp: App {
         WindowGroup {
             ContentView().environmentObject(appState)
         }
+        .windowToolbarStyle(UnifiedWindowToolbarStyle())
+        .windowStyle(HiddenTitleBarWindowStyle())
         .commands {
             CommandGroup(
                 replacing: CommandGroupPlacement.importExport,

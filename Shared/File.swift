@@ -12,5 +12,5 @@ struct File: Identifiable {
     let url: URL
     let lastDateModified: Date
 
-    var id: String { name }
+    var id: String { url.path }
 }

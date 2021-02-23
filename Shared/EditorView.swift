@@ -14,7 +14,8 @@ struct EditorView: View {
     var body: some View {
         Group {
             if text != nil {
-                SwiftDownTextView(text: Binding($text)!)
+                SwiftDownTextView(text: $text ?? "No file selected")
+                    .insetsSize(40)
             } else {
                 Text("No file selected")
             }

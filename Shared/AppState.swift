@@ -26,10 +26,22 @@ class AppState: ObservableObject {
         let dirBookmark = UserDefaults.standard.data(forKey: "dirBookmark")
         self.restoreFileAccess(for: dirBookmark)
         self.listFiles()
+        let lastSelectedFileId = UserDefaults.standard.string(forKey: "lastSelectedFileId")
+        let lastSelectedFile = self.files.first(where: { $0.id == lastSelectedFileId })
+        self.select(file: lastSelectedFile)
     }
 
-    func select(file: File) {
-        getTextFromFile(fileURL: file.url)
+    func select(file: File?) {
+        if let file = file {
+            getTextFromFile(fileURL: file.url)
+            UserDefaults.standard.set(file.id, forKey: "lastSelectedFile")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "lastSelectedFile")
+        }
+    }
+    
+    func addFile() {
+        
     }
 
     func listFiles(filteringText: String? = nil) {
@@ -130,6 +142,12 @@ class AppState: ObservableObject {
                 } else {
                     self.listFiles(filteringText: filteringText)
                 }
+            }
+            .store(in: &disposables)
+        
+        NotificationCenter.default.publisher(for: Notification.Name("didSelectedDirChange"))
+            .sink { _ in
+                self.compute()
             }
             .store(in: &disposables)
     }

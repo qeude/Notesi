@@ -13,6 +13,13 @@ class AppState: ObservableObject {
     private var disposables = Set<AnyCancellable>()
 
     @Published var files: [File] = []
+    @Published var displayedFiles: [File] = []
+    @Published var selectedFileId: String? {
+        didSet {
+            let file = self.files.first(where: { $0.id == selectedFileId })
+            self.select(file: file)
+        }
+    }
     @Published var selectedFileText: String?
     @Published var dirPath: URL?
     @Published var searchText = ""
@@ -39,12 +46,25 @@ class AppState: ObservableObject {
             UserDefaults.standard.removeObject(forKey: "lastSelectedFile")
         }
     }
-    
+
     func addFile() {
-        
+
     }
 
-    func listFiles(filteringText: String? = nil) {
+    private func filterFiles(with text: String? = nil) {
+        self.displayedFiles = self.files
+            .filter {
+                if let filteringText = text, !filteringText.isEmpty {
+                    return $0.url.lastPathComponent.lowercased().contains(filteringText)
+                }
+                return true
+            }
+            .sorted(by: { (f1, f2) -> Bool in
+                f1.lastDateModified > f2.lastDateModified
+            })
+    }
+
+    func listFiles() {
         let fm = FileManager.default
 
         guard let dirPath = self.dirPath else {
@@ -65,12 +85,6 @@ class AppState: ObservableObject {
             self.files =
                 items
                 .filter { $0.pathExtension == "md" }
-                .filter {
-                    if let filteringText = filteringText {
-                        return $0.deletingPathExtension().lastPathComponent.contains(filteringText)
-                    }
-                    return true
-                }
                 .compactMap { url -> File? in
                     let modificationDate =
                         try?
@@ -81,9 +95,7 @@ class AppState: ObservableObject {
                         name: url.deletingPathExtension().lastPathComponent, url: url,
                         lastDateModified: modificationDate ?? Date.distantPast)
                 }
-                .sorted(by: { (f1, f2) -> Bool in
-                    f1.lastDateModified > f2.lastDateModified
-                })
+            self.filterFiles(with: searchText)
         } catch {
             DDLogError("Error while loading items: \(error)")
         }
@@ -133,18 +145,32 @@ class AppState: ObservableObject {
         self.selectedFileText = nil
     }
 
+    func saveCurrentFile() {
+        if let selectedFileId = selectedFileId {
+            self.save(fileId: selectedFileId)
+        }
+    }
+
+    private func save(fileId: String) {
+        guard let file = self.files.first(where: { $0.id == fileId }) else {
+            return
+        }
+        do {
+            try self.selectedFileText?.write(to: file.url, atomically: true, encoding: .utf8)
+        } catch {
+            DDLogError(
+                "Error writing to file \(file.id): \(error.localizedDescription)")
+        }
+    }
+
     private func setupSubscribers() {
         $searchText
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .sink { filteringText in
-                if filteringText.isEmpty {
-                    self.listFiles()
-                } else {
-                    self.listFiles(filteringText: filteringText)
-                }
+                self.filterFiles(with: filteringText)
             }
             .store(in: &disposables)
-        
+
         NotificationCenter.default.publisher(for: Notification.Name("didSelectedDirChange"))
             .sink { _ in
                 self.compute()

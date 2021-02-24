@@ -14,20 +14,20 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 SearchBar(searchText: $appState.searchText)
-                List {
-                    ForEach(appState.files) { file in
+                //It's a bit weird that I need to do that here, but if I don't I get an error when the displayedFiles list is empty
+                if !appState.displayedFiles.isEmpty {
+                    List(appState.displayedFiles) { file in
                         NavigationLink(
-                            destination:
-                                EditorView(text: $appState.selectedFileText)
-                                .onAppear {
-                                    appState.select(file: file)
-                                }
-                        ) {
-                            Text(file.name)
-                        }
+                            file.name,
+                            destination: EditorView(text: $appState.selectedFileText),
+                            tag: file.id,
+                            selection: $appState.selectedFileId
+                        )
                     }
+                    .listStyle(SidebarListStyle())
+                } else {
+                    Spacer()
                 }
-                .listStyle(SidebarListStyle())
             }
             .toolbar {
                 ToolbarItem(placement: .status) {
@@ -48,16 +48,14 @@ struct ContentView: View {
                     }
                 }
             }
-            .onAppear {
-                appState.compute()
-            }
         }
     }
 }
 
 func toggleSidebar() {
     #if os(macOS)
-    NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        NSApp.keyWindow?.firstResponder?.tryToPerform(
+            #selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     #endif
 }
 

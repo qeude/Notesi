@@ -21,6 +21,18 @@ struct NotesiApp: App {
         .windowStyle(HiddenTitleBarWindowStyle())
         .commands {
             CommandGroup(
+                replacing: CommandGroupPlacement.saveItem,
+                addition: {
+                    Button(
+                        action: {
+                            self.appState.saveCurrentFile()
+                        },
+                        label: {
+                            Text("Save")
+                        }
+                    ).keyboardShortcut("s", modifiers: [.command])
+                })
+            CommandGroup(
                 replacing: CommandGroupPlacement.importExport,
                 addition: {
                     Button(
@@ -42,10 +54,12 @@ struct NotesiApp: App {
                             }
                         },
                         label: {
-                            Text("Open folder...")
-                        })
+                            Text("Open folder")
+                        }
+                    ).keyboardShortcut("o", modifiers: [.command])
                 })
             SidebarCommands()
+            ToolbarCommands()
         }
     }
 }

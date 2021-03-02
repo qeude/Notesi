@@ -23,6 +23,18 @@ struct ContentView: View {
                             tag: file.id,
                             selection: $appState.selectedFileId
                         )
+                        .contextMenu {
+                            Button {
+                                
+                            } label: {
+                                Text("Rename")
+                            }
+                            Button {
+                                appState.delete(file: file)
+                            } label: {
+                                Text("Delete")
+                            }
+                        }
                     }
                     .listStyle(SidebarListStyle())
                 } else {

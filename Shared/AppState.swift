@@ -12,7 +12,11 @@ import Foundation
 class AppState: ObservableObject {
     private var disposables = Set<AnyCancellable>()
 
-    @Published var files: [File] = []
+    @Published var files: [File] = [] {
+        didSet {
+            self.filterFiles(with: searchText)
+        }
+    }
     @Published var displayedFiles: [File] = []
     @Published var selectedFileId: String? {
         didSet {
@@ -38,17 +42,30 @@ class AppState: ObservableObject {
         self.select(file: lastSelectedFile)
     }
 
-    func select(file: File?) {
+    private func select(file: File?) {
         if let file = file {
-            getTextFromFile(fileURL: file.url)
             UserDefaults.standard.set(file.id, forKey: "lastSelectedFile")
         } else {
             UserDefaults.standard.removeObject(forKey: "lastSelectedFile")
         }
+        getTextFromFile(fileURL: file?.url)
     }
 
     func addFile() {
 
+    }
+    
+    func delete(file: File) {
+        let fm = FileManager.default
+        do {
+            try fm.removeItem(at: file.url)
+            self.files.removeAll(where: {$0.id == file.id})
+            if selectedFileId == file.id {
+                self.selectedFileId = nil
+            }
+        } catch {
+            DDLogError("Error while removing item: \(file.name)")
+        }
     }
 
     private func filterFiles(with text: String? = nil) {
@@ -95,7 +112,6 @@ class AppState: ObservableObject {
                         name: url.deletingPathExtension().lastPathComponent, url: url,
                         lastDateModified: modificationDate ?? Date.distantPast)
                 }
-            self.filterFiles(with: searchText)
         } catch {
             DDLogError("Error while loading items: \(error)")
         }

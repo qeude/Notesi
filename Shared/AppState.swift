@@ -125,6 +125,9 @@ class AppState: ObservableObject {
                         name: Notification.Name("didSelectedDirChange"),
                         object: bookmarkData)
             }
+            if !url.startAccessingSecurityScopedResource() {
+                DDLogError("Couldn't access: \(url.path)")
+            }
             dirPath = url
             DDLogDebug("Changed dirPath to \(String(describing: dirPath?.path))")
         } catch {
